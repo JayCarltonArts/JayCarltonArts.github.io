@@ -31,11 +31,60 @@ document.addEventListener("DOMContentLoaded", function() {
         const confirm = document.getElementById("confirm").value;
         const guests = document.getElementById("NumInvites").value;
 
-        
+        const content = `Option 1: ${confirm}\nOption 2: ${guests}`;
+
+            // Create a Blob containing the text data
+            const blob = new Blob([content], { type: 'text/plain' });
+
+            // Create a link element
+            const link = document.createElement('a');
+
+            // Set the link's href attribute to a URL representing the Blob data
+            link.href = URL.createObjectURL(blob);
+
+            // Specify the filename for the downloaded file
+            link.download = 'user_data.txt';
+
+            // Append the link to the document
+            document.body.appendChild(link);
+
+            // Trigger a click on the link to start the download
+            link.click();
+
+            // Remove the link from the document
+            document.body.removeChild(link);
 
         confirmationMessage.innerHTML = `Thank you, ${confirm}! You and ${guests} guests are confirmed.`;
         rsvpForm.reset();
     });
+
+    function saveToFile() {
+        const option1 =  document.getElementById("confirm").value;
+        const option2 =  document.getElementById("NumInvites").value;
+
+        const content = `Option 1: ${option1}\nOption 2: ${option2}`;
+
+        // Create a Blob containing the text data
+        const blob = new Blob([content], { type: 'text/plain' });
+
+        // Create a link element
+        const link = document.createElement('a');
+
+        // Set the link's href attribute to a URL representing the Blob data
+        link.href = URL.createObjectURL(blob);
+
+        // Specify the filename for the downloaded file
+        link.download = 'sample.txt';
+
+        // Append the link to the document
+        document.body.appendChild(link);
+
+        // Trigger a click on the link to start the download
+        link.click();
+
+        // Remove the link from the document
+        document.body.removeChild(link);
+    }
 
 });
 
