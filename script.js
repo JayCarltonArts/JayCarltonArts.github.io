@@ -11,8 +11,6 @@ document.addEventListener("DOMContentLoaded", function() {
         const timeleft = weddingDate - now;
         
 
-
-        
         const days = Math.floor(timeleft / (1000 * 60 * 60 * 24));
         const hours = Math.floor((timeleft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((timeleft % (1000 * 60 * 60)) / (1000 * 60));
@@ -31,28 +29,45 @@ document.addEventListener("DOMContentLoaded", function() {
         const confirm = document.getElementById("confirm").value;
         const guests = document.getElementById("NumInvites").value;
 
+
+
         const content = `Option 1: ${confirm}\nOption 2: ${guests}`;
 
             // Create a Blob containing the text data
             const blob = new Blob([content], { type: 'text/plain' });
+// Requiring fs module in which
+// writeFile function is defined.
+const fs = require('fs')
+ 
+// Data which will write in a file.
+let data = blob
+ 
 
             // Create a link element
-            const link = document.createElement('a');
+            //const link = document.createElement('a');
 
             // Set the link's href attribute to a URL representing the Blob data
-            link.href = URL.createObjectURL(blob);
-
+            //link.href = URL.createObjectURL(blob);
+            
             // Specify the filename for the downloaded file
-            link.download = 'user_data.txt';
+            
 
             // Append the link to the document
-            document.body.appendChild(link);
+           // document.body.appendChild(link);
 
-            // Trigger a click on the link to start the download
-            link.click();
+            // Trigger a click son the link to start the download
+            //link.click();
 
             // Remove the link from the document
-            document.body.removeChild(link);
+            //document.body.removeChild(link);
+
+            // Write data in 'Output.txt' .
+fs.writeFile('sample.txt', data, (err) => {
+ 
+    // In case of a error throw err.
+    if (err) throw err;
+})
+
 
         confirmationMessage.innerHTML = `Thank you, ${confirm}! You and ${guests} guests are confirmed.`;
         rsvpForm.reset();
