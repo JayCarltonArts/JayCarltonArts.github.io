@@ -27,3 +27,8 @@ body {
     border-radius: 4px;
 }
 
+@keyframes pulse {}
+
+.animated {
+    animation-play-state: running !important;
+}
